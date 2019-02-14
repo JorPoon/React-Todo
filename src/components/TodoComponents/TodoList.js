@@ -12,7 +12,7 @@ import Todo from "./Todo";
 
 const TodoList = props => {
     return props.toDoArray.map((single, index) => (
-             <Todo key={index} Todo={single} />
+             <Todo key={index} Todo={single} toggleItem={props.toggleItem} />
           ));
         
     

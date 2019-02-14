@@ -51,19 +51,38 @@ class App extends React.Component {
     });
   }
 
+  toggleItem = toDoId => {
+    this.setState({
+      toDoArray: this.state.toDoArray.map(item => {
+        if( toDoId === item.id) {
+          return {
+            ...item,
+            completed: !item.completed
+          };
+        }
+      })
+    })
+  }
+
+  clearToDo = e => {
+    e.preventDefault();
+    console.log("clear!");
+  }
+
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <h2>To Do App</h2>
         {/* {this.state.toDoArray.map((single) => {
             return <Todo Todo={single} />
           })
         } */}
-        <TodoList toDoArray={this.state.toDoArray} />
+        <TodoList toDoArray={this.state.toDoArray} toggleItem={this.toggleItem}/>
         <TodoForm 
           addToDo={this.addToDo}
           todo= {this.state.task}
           handleChanges={this.handleChanges}
+          clearToDo={this.clearToDo}
         />
       </div>
     );
