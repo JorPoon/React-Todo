@@ -3,7 +3,7 @@ import Todo from "./components/TodoComponents/Todo";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
 
-const todoArray = [
+const list = [
     {
       task: 'Organize Garage',
       id: 1528817077286,
@@ -23,7 +23,7 @@ class App extends React.Component {
   constructor() {
     super(); 
     this.state = {
-      toDoArray: todoArray,
+      toDoArray: list,
       task: "",
       id: "",
       completed: false
@@ -38,7 +38,7 @@ class App extends React.Component {
         completed: false
       }
       this.setState({
-        toDoArray: [...this.state.todoArray, newTodo],
+        toDoArray: [...this.state.toDoArray, newTodo],
         task: "",
         id: Date.now(),
         completed: false
@@ -47,7 +47,7 @@ class App extends React.Component {
 
   handleChanges = e => {
     this.setState({
-      [e.target.task]: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
@@ -55,13 +55,15 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        {/* <TodoList /> */}
-        {this.state.toDoArray.map((single) => {
-          <Todo todo={single} />
-        })
-      }
+        {/* {this.state.toDoArray.map((single) => {
+            return <Todo Todo={single} />
+          })
+        } */}
+        <TodoList toDoArray={this.state.toDoArray} />
         <TodoForm 
-          task= {this.state.task}
+          addToDo={this.addToDo}
+          todo= {this.state.task}
+          handleChanges={this.handleChanges}
         />
       </div>
     );

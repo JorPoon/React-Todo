@@ -5,9 +5,9 @@ const TodoForm = props => {
         <form onSubmit={props.addToDo}>
             <input
                 type= "text"
-                value= {props.Todo}
+                value= {props.todo}
                 onChange= {props.handleChanges}
-                id= {Date.now()}
+                name="task" //equal to state[task]
                 completed= "false"
                 placeholder= "What do you have to do?"
             />

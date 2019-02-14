@@ -3,12 +3,19 @@
 import React from "react";
 import Todo from "./Todo";
 
+
+        {/* <TodoList /> */}
+        // {this.state.toDoArray.map((single) => {
+        //     return <Todo Todo={single} />
+        //   })
+        // }
+
 const TodoList = props => {
-    return (
-        props.todoArray.map(point => {
-            <Todo toDo={point} />
-        })
-    );
+    return props.toDoArray.map((single, index) => (
+             <Todo key={index} Todo={single} />
+          ));
+        
+    
 };
 
 export default TodoList;
