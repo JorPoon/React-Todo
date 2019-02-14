@@ -1,12 +1,15 @@
 import React from "react";
+import './Todo.css'
 
 function Todo(props) {
+    console.log(props);
+    
     return (
         <div
-        className={props.Todo.completed ? "completed" : " "}
-        onClick={() => props.toggleItem(props.Todo.id)}
+       
         >
-        <p>
+        <p  className={props.Todo.completed ? "completed" : " "}
+        onClick={() => props.toggleItem(props.Todo.id)} >
             <strong>
                 {props.Todo.task}
             </strong>

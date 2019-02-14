@@ -51,22 +51,38 @@ class App extends React.Component {
     });
   }
 
+  //UNDERSTAND THIS..
   toggleItem = toDoId => {
+    //copy array
+    const newTodos = [...this.state.toDoArray] 
+    //loop through array and find matching IDs
+    newTodos.map(Todo => {
+      if(Todo.id === toDoId) {
+        Todo.completed= !Todo.completed
+        return Todo
+      } else {
+        return Todo
+      }
+    })
+    //Update completed field for specific ID
+    //setState
+    this.setState({toDoArray: newTodos})
+  }
+
+  deleteToDo = e => {
+    e.preventDefault();
+    console.log("delete!");
     this.setState({
-      toDoArray: this.state.toDoArray.map(item => {
-        if( toDoId === item.id) {
-          return {
-            ...item,
-            completed: !item.completed
-          };
-        }
-      })
+      toDoArray: this.state.toDoArray.filter(item => !item.completed)
     })
   }
 
   clearToDo = e => {
     e.preventDefault();
-    console.log("clear!");
+    console.log("clear");
+    this.setState({
+      toDoArray: []
+    })
   }
 
   render() {
@@ -82,6 +98,7 @@ class App extends React.Component {
           addToDo={this.addToDo}
           todo= {this.state.task}
           handleChanges={this.handleChanges}
+          deleteToDo={this.deleteToDo}
           clearToDo={this.clearToDo}
         />
       </div>
